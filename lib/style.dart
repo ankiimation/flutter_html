@@ -323,12 +323,12 @@ class Style {
   Style copyOnlyInherited(Style child) {
     FontSize? finalFontSize = child.fontSize != null ?
       fontSize != null && child.fontSize?.units == "em" ?
-        FontSize(child.fontSize!.size! * fontSize!.size!) : child.fontSize
-      : fontSize != null && fontSize!.size! < 0 ?
+        FontSize(child.fontSize!.size* fontSize!.size) : child.fontSize
+      : fontSize != null && fontSize!.size< 0 ?
         FontSize.percent(100) : fontSize;
     LineHeight? finalLineHeight = child.lineHeight != null ?
       child.lineHeight?.units == "length" ?
-        LineHeight(child.lineHeight!.size! / (finalFontSize == null ? 14 : finalFontSize.size!) * 1.2) : child.lineHeight
+        LineHeight(child.lineHeight!.size! / (finalFontSize == null ? 14 : finalFontSize.size) * 1.2) : child.lineHeight
       : lineHeight;
     return child.copyWith(
       backgroundColor: child.backgroundColor != Colors.transparent ?
@@ -440,7 +440,7 @@ class Style {
     this.textDecorationThickness = textStyle.decorationThickness;
     this.fontFamily = textStyle.fontFamily;
     this.fontFeatureSettings = textStyle.fontFeatures;
-    this.fontSize = FontSize(textStyle.fontSize);
+    this.fontSize = FontSize(textStyle.fontSize??0);
     this.fontStyle = textStyle.fontStyle;
     this.fontWeight = textStyle.fontWeight;
     this.letterSpacing = textStyle.letterSpacing;
@@ -459,7 +459,7 @@ enum Display {
 }
 
 class FontSize {
-  final double? size;
+  final double size;
   final String units;
 
   const FontSize(this.size, {this.units = ""});
@@ -470,7 +470,7 @@ class FontSize {
   }
 
   factory FontSize.em(double? em) {
-    return FontSize(em, units: "em");
+    return FontSize(em??0, units: "em");
   }
 
   factory FontSize.rem(double rem) {

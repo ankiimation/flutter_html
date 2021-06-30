@@ -507,10 +507,10 @@ class HtmlParser extends StatelessWidget {
       late double verticalOffset;
       switch (tree.style.verticalAlign) {
         case VerticalAlign.SUB:
-          verticalOffset = tree.style.fontSize!.size! / 2.5;
+          verticalOffset = tree.style.fontSize!.size/ 2.5;
           break;
         case VerticalAlign.SUPER:
-          verticalOffset = tree.style.fontSize!.size! / -2.5;
+          verticalOffset = tree.style.fontSize!.size/ -2.5;
           break;
         default:
           break;
@@ -967,9 +967,9 @@ class HtmlParser extends StatelessWidget {
     double? parentFontSize = tree.style.fontSize?.size ?? FontSize.medium.size;
 
     tree.children.forEach((child) {
-      if ((child.style.fontSize?.size ?? parentFontSize)! < 0) {
+      if ((child.style.fontSize?.size ?? parentFontSize)< 0) {
         child.style.fontSize =
-            FontSize(parentFontSize! * -child.style.fontSize!.size!);
+            FontSize(parentFontSize* -child.style.fontSize!.size);
       }
 
       _processFontSize(child);
